@@ -10,6 +10,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 # from tomlkit import integer
+logger = logging.getLogger("flask.app")
 MIN_PRICE = 10.00
 MAX_PRICE = 100.00
 MIN_RATE = 0
