@@ -113,7 +113,8 @@ class Product(db.Model):
         }
 
     def check_price(self, price):
-        if isinstance(price, float):
+        if isinstance(price, float) or isinstance(price, int):
+            price = float(price)
             if price >= MIN_PRICE and price <= MAX_PRICE:
                 self.price = price
             else:
@@ -133,7 +134,8 @@ class Product(db.Model):
 
     def check_rating(self, rating):
         if rating is not None:
-            if isinstance(rating, float):
+            if isinstance(rating, float) or isinstance(rating, int):
+                rating = float(rating)
                 if rating >= MIN_RATE and rating <= MAX_RATE:
                     self.rating = rating
                 else:

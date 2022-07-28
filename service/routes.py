@@ -135,8 +135,13 @@ def create_products():
     """
     app.logger.info("Request to create a product")
     check_content_type("application/json")
+    data = request.get_json()
+    data["rating"] = None if "rating" not in data or data["rating"] is None \
+        else float(data["rating"])
+    data["no_of_users_rated"] = 0 if "no_of_users_rated" not in data \
+        or data["no_of_users_rated"] is None else int(data["no_of_users_rated"])
     product = Product()
-    product.deserialize(request.get_json())
+    product.deserialize(data)
     app.logger.info("Here Deserialization done")
     product.create()
     message = product.serialize()
